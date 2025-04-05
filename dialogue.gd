@@ -41,7 +41,6 @@ func _play_sound_for_letter():
 		var clip_name = clip.resource_path.split('/')[-1].split('.')[0]
 		if last_character in clip_name:
 			$AudioStreamPlayer.stream = clip
-			print("%s = %s"%[last_character, clip_name])
 
 	$AudioStreamPlayer.play()
 	can_play = false

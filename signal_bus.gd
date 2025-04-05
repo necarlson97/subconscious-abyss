@@ -7,3 +7,5 @@ signal client_thought(text: String)
 signal client_speak(text: String)
 signal therapist_thought(text: String)
 signal therapist_speak(text: String)
+
+signal question_asked(cost: int)

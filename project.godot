@@ -28,3 +28,4 @@ enabled=PackedStringArray("res://addons/orbit_camera/plugin.cfg")
 renderer/rendering_method="gl_compatibility"
 limits/opengl/max_renderable_lights=40
 limits/opengl/max_lights_per_object=40
+environment/defaults/default_clear_color=Color(0.152941, 0.00784314, 0.0117647, 1)

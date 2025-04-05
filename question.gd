@@ -218,6 +218,7 @@ func _input(event):
 		clicked = true
 		handle_disappear()
 		SignalBus.therapist_speak.emit(question_text)
+		SignalBus.question_asked.emit(cost)
 		
 		await get_tree().create_timer(1.0).timeout
 		SignalBus.client_speak.emit(response_text)

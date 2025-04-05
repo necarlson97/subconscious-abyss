@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://s72noart07he"]
+[gd_scene load_steps=10 format=3 uid="uid://s72noart07he"]
 
 [ext_resource type="Script" uid="uid://bxe8onufubc70" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dyx3j1lt442dg" path="res://pillar.tscn" id="1_h2yge"]
@@ -7,58 +7,36 @@
 [ext_resource type="PackedScene" uid="uid://cfbm1j0far6rr" path="res://thought.tscn" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://bkw8ga5j1xd4d" path="res://thought_spawner.gd" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://ieo04h8sjqqy" path="res://bowl.tscn" id="4_kek77"]
-[ext_resource type="Texture2D" uid="uid://biyl7tljk6app" path="res://pics/therapist - neutral.png" id="7_272bh"]
-[ext_resource type="Script" uid="uid://bl540juhmmd5y" path="res://patience_bar.gd" id="8_5vw27"]
-[ext_resource type="Texture2D" uid="uid://ykmgwul62htf" path="res://pics/thought bubble.png" id="8_dg77c"]
-[ext_resource type="Script" uid="uid://cah2ch6ek1xig" path="res://dialogue.gd" id="9_w48qg"]
-[ext_resource type="Texture2D" uid="uid://b1tk4n42r5p8l" path="res://pics/speech bubble.png" id="10_ycdy4"]
-[ext_resource type="Texture2D" uid="uid://cfrdqrjj7yksh" path="res://pics/patient - neutral.png" id="11_w48qg"]
-[ext_resource type="AudioStream" uid="uid://11qu77gsiw8a" path="res://audio/speech/eawyi.wav" id="11_ycdy4"]
-[ext_resource type="AudioStream" uid="uid://c7qo67ydacf51" path="res://audio/speech/bpnm.wav" id="13_ryguw"]
-[ext_resource type="AudioStream" uid="uid://d1hvfj423tpbo" path="res://audio/speech/ckv.wav" id="14_d13ii"]
-[ext_resource type="AudioStream" uid="uid://ccwdepewmq3uv" path="res://audio/speech/ee.wav" id="14_vivmo"]
-[ext_resource type="AudioStream" uid="uid://s6x0xfolov4r" path="res://audio/speech/dfhj.wav" id="15_1u8w0"]
-[ext_resource type="AudioStream" uid="uid://bqciogn7w21iq" path="res://audio/speech/gq.wav" id="16_0odxb"]
-[ext_resource type="AudioStream" uid="uid://hg30k2xqy7w2" path="res://audio/speech/ltszx.wav" id="17_lswn8"]
-[ext_resource type="AudioStream" uid="uid://c8r1jyvmnfbn3" path="res://audio/speech/ou.wav" id="18_a6jrf"]
-[ext_resource type="AudioStream" uid="uid://68kuiw2ipiq" path="res://audio/speech/r.wav" id="19_xuqvo"]
+[ext_resource type="PackedScene" uid="uid://dts5n1j1ihkxb" path="res://hud.tscn" id="8_5vw27"]
 
 [sub_resource type="Environment" id="Environment_0xm2m"]
 background_color = Color(1, 1, 1, 1)
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.33
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
+ambient_light_energy = 0.3
 
 [node name="main" type="Node3D" node_paths=PackedStringArray("cam_anchor", "patience_bar")]
 script = ExtResource("1_1bvp3")
 cam_anchor = NodePath("cam anchor")
-patience_bar = NodePath("CanvasLayer/HBoxContainer/MarginContainer/HBoxContainer/ProgressBar")
+patience_bar = NodePath("hud/HBoxContainer/MarginContainer/HBoxContainer/ProgressBar")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
 [node name="bg" parent="." instance=ExtResource("2_7mycd")]
 
 [node name="pillar" parent="." instance=ExtResource("1_h2yge")]
-num_questions = 10
-y_offset_range = 0.5
 xz_jitter_range = 0.1
-tilt_degrees = 10.0
-strategy = 0
 
 [node name="pillar2" parent="." instance=ExtResource("1_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0)
 num_questions = 20
 y_offset_range = 0.3
 xz_jitter_range = 1.0
-tilt_degrees = 10.0
-strategy = 0
 
 [node name="pillar3" parent="." instance=ExtResource("1_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12, 0)
 num_questions = 15
-y_offset_range = 0.5
-xz_jitter_range = 0.5
-tilt_degrees = 10.0
 strategy = 1
 
 [node name="bowl" parent="." instance=ExtResource("4_kek77")]
@@ -83,273 +61,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.02009, 0)
 script = ExtResource("4_1bvp3")
 thought_scene = ExtResource("3_h2yge")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="hud" parent="." instance=ExtResource("8_5vw27")]
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer"]
-custom_minimum_size = Vector2(222, 0)
-layout_direction = 2
-anchors_preset = 9
-anchor_bottom = 1.0
-grow_vertical = 2
-size_flags_vertical = 8
-
-[node name="Control" type="Control" parent="CanvasLayer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 3.0
-
-[node name="Thought" type="TextureRect" parent="CanvasLayer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("8_dg77c")
-expand_mode = 1
-stretch_mode = 4
-flip_h = true
-script = ExtResource("9_w48qg")
-listen_signal = "therapist_thought"
-
-[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer2/Thought"]
-layout_mode = 1
-offset_left = 19.0
-offset_top = 13.0
-offset_right = 181.0
-offset_bottom = 74.0
-theme_override_colors/font_color = Color(0.281027, 0.291027, 0.291026, 1)
-theme_override_font_sizes/font_size = 11
-text = "Which of you walls must be torn down? And which can -or must- remain unbroken?"
-autowrap_mode = 2
-text_overrun_behavior = 3
-visible_characters_behavior = 1
-
-[node name="Portrait" type="TextureRect" parent="CanvasLayer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-texture = ExtResource("7_272bh")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="Speech" type="TextureRect" parent="CanvasLayer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("10_ycdy4")
-expand_mode = 1
-stretch_mode = 4
-flip_h = true
-script = ExtResource("9_w48qg")
-listen_signal = "therapist_speak"
-speach_clips = Array[AudioStream]([ExtResource("13_ryguw"), ExtResource("14_d13ii"), ExtResource("15_1u8w0"), ExtResource("11_ycdy4"), ExtResource("16_0odxb"), ExtResource("17_lswn8"), ExtResource("18_a6jrf"), ExtResource("19_xuqvo")])
-default_clip = ExtResource("14_vivmo")
-
-[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer2/Speech"]
-layout_mode = 2
-offset_left = 9.0
-offset_top = 18.0
-offset_right = 171.0
-offset_bottom = 79.0
-theme_override_colors/font_color = Color(0.0705882, 0.0745098, 0.0745098, 1)
-theme_override_font_sizes/font_size = 11
-text = "I think this is the longest that any individual thought will be. No longer than this, I think. Yes. This should be the longest."
-autowrap_mode = 2
-text_overrun_behavior = 3
-visible_characters_behavior = 1
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/VBoxContainer2/Speech"]
-stream = ExtResource("11_ycdy4")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -222.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -82.0
-grow_horizontal = 0
-grow_vertical = 2
-size_flags_horizontal = 10
-size_flags_vertical = 3
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(222, 0)
-layout_direction = 2
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Control" type="Control" parent="CanvasLayer/HBoxContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 3.0
-
-[node name="Thought" type="TextureRect" parent="CanvasLayer/HBoxContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 3
-texture = ExtResource("8_dg77c")
-expand_mode = 3
-stretch_mode = 5
-script = ExtResource("9_w48qg")
-listen_signal = "client_thought"
-speach_clips = Array[AudioStream]([ExtResource("13_ryguw"), ExtResource("14_d13ii"), ExtResource("15_1u8w0"), ExtResource("11_ycdy4"), ExtResource("16_0odxb"), ExtResource("17_lswn8"), ExtResource("18_a6jrf"), ExtResource("19_xuqvo")])
-default_clip = ExtResource("14_vivmo")
-
-[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/VBoxContainer3/Thought"]
-layout_mode = 1
-offset_left = 15.0
-offset_top = 17.0
-offset_right = 177.0
-offset_bottom = 78.0
-theme_override_colors/font_color = Color(0.282353, 0.290196, 0.290196, 1)
-theme_override_font_sizes/font_size = 11
-text = "I think this is the longest that any individual thought will be. No longer than this, I think. Yes. This should be the longest."
-autowrap_mode = 2
-text_overrun_behavior = 3
-visible_characters_behavior = 1
-
-[node name="Portrait" type="TextureRect" parent="CanvasLayer/HBoxContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-texture = ExtResource("11_w48qg")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Speech" type="TextureRect" parent="CanvasLayer/HBoxContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("10_ycdy4")
-expand_mode = 3
-stretch_mode = 5
-script = ExtResource("9_w48qg")
-listen_signal = "client_speak"
-speach_clips = Array[AudioStream]([ExtResource("13_ryguw"), ExtResource("14_d13ii"), ExtResource("15_1u8w0"), ExtResource("11_ycdy4"), ExtResource("16_0odxb"), ExtResource("17_lswn8"), ExtResource("18_a6jrf"), ExtResource("19_xuqvo")])
-default_clip = ExtResource("14_vivmo")
-
-[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/VBoxContainer3/Speech"]
-layout_mode = 1
-offset_left = 33.0
-offset_top = 18.0
-offset_right = 195.0
-offset_bottom = 79.0
-theme_override_colors/font_color = Color(0.0705882, 0.0745098, 0.0745098, 1)
-theme_override_font_sizes/font_size = 11
-text = "I think this is the longest that any individual thought will be. No longer than this, I think. Yes. This should be the longest."
-autowrap_mode = 2
-text_overrun_behavior = 3
-visible_characters_behavior = 1
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/HBoxContainer/VBoxContainer3/Speech"]
-stream = ExtResource("14_vivmo")
-pitch_scale = 1.32
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HBoxContainer/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/HBoxContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/fill = SubResource("StyleBoxFlat_5vw27")
-value = 80.0
-fill_mode = 3
-show_percentage = false
-script = ExtResource("8_5vw27")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Control" type="Control" parent="CanvasLayer/HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Control"]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-color = Color(0.57319, 0.622302, 0.828128, 1)
-
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Control/ColorRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 1.5708
-use_top_left = true
-
-[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Control/ColorRect/CenterContainer"]
-layout_mode = 2
-text = "DREAMS"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-size_flags_vertical = 3
-color = Color(0.56395, 0.329793, 0.548597, 1)
-
-[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/ColorRect2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 1.5708
-use_top_left = true
-
-[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/ColorRect2/CenterContainer2"]
-layout_mode = 2
-text = "CHILDHOOD"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-size_flags_vertical = 3
-color = Color(0.306388, 0.218388, 0.428018, 1)
-
-[node name="CenterContainer3" type="CenterContainer" parent="CanvasLayer/HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/ColorRect3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 1.5708
-use_top_left = true
-
-[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/ColorRect3/CenterContainer3"]
-layout_mode = 2
-text = "SUBCONSCIOUS"
-horizontal_alignment = 1
-vertical_alignment = 1
+[editable path="hud"]

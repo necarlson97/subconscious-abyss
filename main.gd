@@ -24,7 +24,7 @@ func get_current_min_stage():
 
 func get_min_stage_from_patience():
 	var percent = patience_bar.value / patience_bar.max_value
-	var index := int((1.0 - percent) * stage_count)
+	var index := int((1.0 - percent) * 3)
 	return clamp(index, 0, stage_count - 1)
 
 func get_min_stage_from_thoughts() -> int:

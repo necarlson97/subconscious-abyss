@@ -85,6 +85,7 @@ shadow_mesh = SubResource("ArrayMesh_lswgr")
 
 [node name="bg brain" type="MeshInstance3D" parent="."]
 transform = Transform3D(21.2135, 0, 0, 0, 21.2135, 0, 0, 0, 21.2135, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_otshm")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_t4gw0")
