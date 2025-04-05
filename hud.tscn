@@ -1,0 +1,392 @@
+[gd_scene load_steps=23 format=3 uid="uid://dts5n1j1ihkxb"]
+
+[ext_resource type="Texture2D" uid="uid://ykmgwul62htf" path="res://pics/thought bubble.png" id="1_2d608"]
+[ext_resource type="Script" uid="uid://b5q3ae0es5ocw" path="res://end_info.gd" id="1_pw7dr"]
+[ext_resource type="Script" uid="uid://cah2ch6ek1xig" path="res://dialogue.gd" id="2_w71nf"]
+[ext_resource type="Texture2D" uid="uid://biyl7tljk6app" path="res://pics/therapist - neutral.png" id="3_615i1"]
+[ext_resource type="Texture2D" uid="uid://b1tk4n42r5p8l" path="res://pics/speech bubble.png" id="4_pw7dr"]
+[ext_resource type="AudioStream" uid="uid://c7qo67ydacf51" path="res://audio/speech/bpnm.wav" id="5_ap7yk"]
+[ext_resource type="AudioStream" uid="uid://d1hvfj423tpbo" path="res://audio/speech/ckv.wav" id="6_5kc73"]
+[ext_resource type="AudioStream" uid="uid://s6x0xfolov4r" path="res://audio/speech/dfhj.wav" id="7_bp16l"]
+[ext_resource type="AudioStream" uid="uid://11qu77gsiw8a" path="res://audio/speech/eawyi.wav" id="8_5iihh"]
+[ext_resource type="AudioStream" uid="uid://bqciogn7w21iq" path="res://audio/speech/gq.wav" id="9_rgb5v"]
+[ext_resource type="AudioStream" uid="uid://hg30k2xqy7w2" path="res://audio/speech/ltszx.wav" id="10_np8ax"]
+[ext_resource type="AudioStream" uid="uid://c8r1jyvmnfbn3" path="res://audio/speech/ou.wav" id="11_8w6vd"]
+[ext_resource type="AudioStream" uid="uid://68kuiw2ipiq" path="res://audio/speech/r.wav" id="12_shnbk"]
+[ext_resource type="AudioStream" uid="uid://ccwdepewmq3uv" path="res://audio/speech/ee.wav" id="13_o2hcl"]
+[ext_resource type="Texture2D" uid="uid://cfrdqrjj7yksh" path="res://pics/patient - neutral.png" id="14_gh5fi"]
+[ext_resource type="Script" uid="uid://bl540juhmmd5y" path="res://patience_bar.gd" id="15_nx880"]
+[ext_resource type="Material" uid="uid://bkmqbid43ikma" path="res://mats/follow_particles.tres" id="16_w71nf"]
+[ext_resource type="Script" uid="uid://cntnpkl2aqgo5" path="res://cost_particles.gd" id="17_615i1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
+
+[sub_resource type="Curve" id="Curve_615i1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.357558, 1), 0.0, 0.0, 0, 0, Vector2(0.953488, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_pw7dr"]
+curve = SubResource("Curve_615i1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ap7yk"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 1, 1)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 31.41
+initial_velocity_max = 89.0
+gravity = Vector3(0, -100, 0)
+scale_min = 3.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_pw7dr")
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(222, 0)
+layout_direction = 2
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 0
+
+[node name="EndInfo" type="VBoxContainer" parent="VBoxContainer2/MarginContainer" node_paths=PackedStringArray("release_log")]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+script = ExtResource("1_pw7dr")
+release_log = NodePath("../../../HBoxContainer/VBoxContainer3/MarginContainer/ReleaseLog")
+
+[node name="Control" type="Control" parent="VBoxContainer2/MarginContainer/EndInfo"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Score" type="Label" parent="VBoxContainer2/MarginContainer/EndInfo"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+theme_override_font_sizes/font_size = 11
+text = "00 thoughts released from the depths!
+00 ruminations still repressed..."
+autowrap_mode = 2
+text_overrun_behavior = 3
+visible_characters_behavior = 1
+
+[node name="Button" type="Button" parent="VBoxContainer2/MarginContainer/EndInfo"]
+layout_mode = 2
+text = "Try Again?"
+
+[node name="Thought" type="TextureRect" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_2d608")
+expand_mode = 1
+stretch_mode = 4
+flip_h = true
+script = ExtResource("2_w71nf")
+listen_signal = "therapist_thought"
+
+[node name="Label" type="Label" parent="VBoxContainer2/Thought"]
+layout_mode = 1
+offset_left = 19.0
+offset_top = 13.0
+offset_right = 174.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(0.281027, 0.291027, 0.291026, 1)
+theme_override_font_sizes/font_size = 11
+text = "Which of you walls must be torn down? And which can -or must- remain unbroken?"
+autowrap_mode = 2
+text_overrun_behavior = 3
+visible_characters_behavior = 1
+
+[node name="Portrait" type="TextureRect" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+texture = ExtResource("3_615i1")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Speech" type="TextureRect" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_pw7dr")
+expand_mode = 1
+stretch_mode = 4
+flip_h = true
+script = ExtResource("2_w71nf")
+listen_signal = "therapist_speak"
+speach_clips = Array[AudioStream]([ExtResource("5_ap7yk"), ExtResource("6_5kc73"), ExtResource("7_bp16l"), ExtResource("8_5iihh"), ExtResource("9_rgb5v"), ExtResource("10_np8ax"), ExtResource("11_8w6vd"), ExtResource("12_shnbk")])
+pitch_start = 0.7
+
+[node name="Label" type="Label" parent="VBoxContainer2/Speech"]
+layout_mode = 2
+offset_left = 9.0
+offset_top = 18.0
+offset_right = 171.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0.0705882, 0.0745098, 0.0745098, 1)
+theme_override_font_sizes/font_size = 11
+text = "I think this is the longest that any individual thought will be. No longer than this, I think. Yes. This should be the longest."
+autowrap_mode = 2
+text_overrun_behavior = 3
+visible_characters_behavior = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="VBoxContainer2/Speech"]
+stream = ExtResource("8_5iihh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -222.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -82.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 10
+size_flags_vertical = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(222, 0)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ReleaseLog" type="Label" parent="HBoxContainer/VBoxContainer3/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 8
+text = "I found reflections of myself in the masks I make for others. Maybe meeting others can help me see deeper.
+Released thought!
+Released thought!
+Released thought!
+Released thought!"
+vertical_alignment = 2
+autowrap_mode = 2
+text_overrun_behavior = 3
+visible_characters_behavior = 1
+
+[node name="Thought" type="TextureRect" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
+texture = ExtResource("1_2d608")
+expand_mode = 3
+stretch_mode = 5
+script = ExtResource("2_w71nf")
+listen_signal = "client_thought"
+speach_clips = Array[AudioStream]([ExtResource("5_ap7yk"), ExtResource("6_5kc73"), ExtResource("7_bp16l"), ExtResource("8_5iihh"), ExtResource("9_rgb5v"), ExtResource("10_np8ax"), ExtResource("11_8w6vd"), ExtResource("12_shnbk")])
+default_clip = ExtResource("13_o2hcl")
+pitch_start = 1.3
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer3/Thought"]
+layout_mode = 1
+offset_left = 15.0
+offset_top = 17.0
+offset_right = 169.0
+offset_bottom = 78.0
+theme_override_colors/font_color = Color(0.282353, 0.290196, 0.290196, 1)
+theme_override_font_sizes/font_size = 11
+text = "I think this is the longest that any individual thought will be. No longer than this, I think. Yes. This should be the longest."
+autowrap_mode = 2
+text_overrun_behavior = 3
+visible_characters_behavior = 1
+
+[node name="Portrait" type="TextureRect" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+texture = ExtResource("14_gh5fi")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Speech" type="TextureRect" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_pw7dr")
+expand_mode = 3
+stretch_mode = 5
+script = ExtResource("2_w71nf")
+listen_signal = "client_speak"
+speach_clips = Array[AudioStream]([ExtResource("5_ap7yk"), ExtResource("6_5kc73"), ExtResource("7_bp16l"), ExtResource("8_5iihh"), ExtResource("9_rgb5v"), ExtResource("10_np8ax"), ExtResource("11_8w6vd"), ExtResource("12_shnbk")])
+default_clip = ExtResource("13_o2hcl")
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer3/Speech"]
+layout_mode = 1
+offset_left = 33.0
+offset_top = 18.0
+offset_right = 195.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0.0705882, 0.0745098, 0.0745098, 1)
+theme_override_font_sizes/font_size = 11
+text = "I think this is the longest that any individual thought will be. No longer than this, I think. Yes. This should be the longest."
+autowrap_mode = 2
+text_overrun_behavior = 3
+visible_characters_behavior = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HBoxContainer/VBoxContainer3/Speech"]
+stream = ExtResource("13_o2hcl")
+pitch_scale = 1.32
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/fill = SubResource("StyleBoxFlat_5vw27")
+value = 80.0
+fill_mode = 3
+show_percentage = false
+script = ExtResource("15_nx880")
+
+[node name="FollowParticles" type="GPUParticles2D" parent="HBoxContainer/MarginContainer/HBoxContainer/ProgressBar"]
+position = Vector2(17, 2)
+process_material = ExtResource("16_w71nf")
+
+[node name="CostParticles" type="GPUParticles2D" parent="HBoxContainer/MarginContainer/HBoxContainer/ProgressBar/FollowParticles"]
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 0.72
+process_material = SubResource("ParticleProcessMaterial_ap7yk")
+script = ExtResource("17_615i1")
+
+[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer/MarginContainer/HBoxContainer/ProgressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+use_top_left = true
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer/ProgressBar/CenterContainer2"]
+layout_mode = 2
+text = "PATIENCE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Control"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+color = Color(0.57319, 0.622302, 0.828128, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Control/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+use_top_left = true
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Control/ColorRect/CenterContainer"]
+layout_mode = 2
+text = "DREAMS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.56395, 0.329793, 0.548597, 1)
+
+[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/ColorRect2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+use_top_left = true
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/ColorRect2/CenterContainer2"]
+layout_mode = 2
+text = "CHILDHOOD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect3" type="ColorRect" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.306388, 0.218388, 0.428018, 1)
+
+[node name="CenterContainer3" type="CenterContainer" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/ColorRect3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+use_top_left = true
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/ColorRect3/CenterContainer3"]
+layout_mode = 2
+text = "SUBCONSCIOUS"
+horizontal_alignment = 1
+vertical_alignment = 1

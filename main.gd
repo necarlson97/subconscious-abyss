@@ -3,6 +3,8 @@ extends Node3D
 @export var cam_anchor: Node3D
 @export var patience_bar: PatienceBar
 
+@export var end_info: Node
+
 var _current_stage := -1
 var pillar_height = 6
 var stage_count = 4
@@ -48,6 +50,8 @@ func get_min_stage_from_thoughts() -> int:
 func to_current_stage():
 	_tween_cam_to_stage(_current_stage)
 	# TODO anything else?
+	if _current_stage >= 3:
+		_on_finish()
 
 func _tween_cam_to_stage(stage_index: int):
 	if not cam_anchor:
@@ -59,3 +63,29 @@ func _tween_cam_to_stage(stage_index: int):
 	var tween := create_tween()
 	tween.tween_property(cam_anchor, "position", target_pos, 1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	
+var finished = false
+func _on_finish():
+	if finished: return
+	finished = true
+	
+	# TODO play some kind of noise - sfxr?
+	
+	end_info.visible = true
+	for c in end_info.get_children():
+		c.visible = true
+	
+	# After it 'settles' - remove all pegs
+	# - but don't count these new ones as released
+	await get_tree().create_timer(1).timeout
+	var finish_area = $"bowl/FinishArea" as Area3D
+	finish_area.monitoring = false
+	get_tree().call_group("question", "handle_disappear")
+
+func _on_try_again() -> void:
+	get_tree().reload_current_scene()
+	
+func _input(event: InputEvent) -> void:
+	# Just debug - when user presses 0,
+	# fire off 'handle_disappear' on all nodes in the 'question' groun
+	if event is InputEventKey and event.pressed and event.keycode == KEY_0:
+		get_tree().call_group("question", "handle_disappear")

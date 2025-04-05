@@ -26,10 +26,11 @@ func _on_signal(text: String):
 @export var default_clip: AudioStream
 
 var can_play = true
-var pitch_start = randf_range(0.6, 1.3)
+@export var pitch_start = 1.0
 func _play_sound_for_letter():
 	if not get_node_or_null("AudioStreamPlayer"): return
 	if not can_play: return
+	if text_label.text == "": return
 	$AudioStreamPlayer.pitch_scale = pitch_start + randf_range(-0.1, 0.1)
 	
 	var last_character_idx = clamp(

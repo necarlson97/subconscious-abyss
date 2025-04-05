@@ -15,10 +15,11 @@ ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.3
 
-[node name="main" type="Node3D" node_paths=PackedStringArray("cam_anchor", "patience_bar")]
+[node name="main" type="Node3D" node_paths=PackedStringArray("cam_anchor", "patience_bar", "end_info")]
 script = ExtResource("1_1bvp3")
 cam_anchor = NodePath("cam anchor")
 patience_bar = NodePath("hud/HBoxContainer/MarginContainer/HBoxContainer/ProgressBar")
+end_info = NodePath("hud/VBoxContainer2/MarginContainer/EndInfo")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -48,7 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.77006)
 script = ExtResource("2_0xm2m")
 SCROLL_SPEED = 30.0
-DEFAULT_DISTANCE = 8.0
+DEFAULT_DISTANCE = 4.0
 ROTATE_SPEED = 0.5
 ANCHOR_NODE_PATH = NodePath("..")
 metadata/_custom_type_script = "uid://qd2bbn2d3xwl"
@@ -62,5 +63,13 @@ script = ExtResource("4_1bvp3")
 thought_scene = ExtResource("3_h2yge")
 
 [node name="hud" parent="." instance=ExtResource("8_5vw27")]
+
+[node name="Score" parent="hud/VBoxContainer2/MarginContainer/EndInfo" index="1"]
+visible = false
+
+[node name="Button" parent="hud/VBoxContainer2/MarginContainer/EndInfo" index="2"]
+visible = false
+
+[connection signal="pressed" from="hud/VBoxContainer2/MarginContainer/EndInfo/Button" to="." method="_on_try_again"]
 
 [editable path="hud"]

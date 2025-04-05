@@ -9,3 +9,5 @@ signal therapist_thought(text: String)
 signal therapist_speak(text: String)
 
 signal question_asked(cost: int)
+
+signal thought_released(info)

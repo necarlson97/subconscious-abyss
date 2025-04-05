@@ -29,7 +29,7 @@ shader_parameter/noise = SubResource("NoiseTexture2D_evow1")
 [sub_resource type="SphereMesh" id="SphereMesh_evow1"]
 material = SubResource("ShaderMaterial_0hjb3")
 
-[node name="thought" type="RigidBody3D"]
+[node name="thought" type="RigidBody3D" groups=["thought"]]
 can_sleep = false
 script = ExtResource("1_0hjb3")
 

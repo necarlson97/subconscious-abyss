@@ -23,6 +23,11 @@ SignalBus="*res://signal_bus.tscn"
 
 enabled=PackedStringArray("res://addons/orbit_camera/plugin.cfg")
 
+[global_group]
+
+question=""
+thought=""
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

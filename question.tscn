@@ -42,7 +42,7 @@ material = SubResource("StandardMaterial3D_g5b5r")
 radius = 0.05
 height = 0.1
 
-[node name="question" type="Node3D"]
+[node name="question" type="Node3D" groups=["question"]]
 script = ExtResource("1_g5b5r")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]

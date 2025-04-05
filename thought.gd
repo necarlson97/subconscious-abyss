@@ -1,4 +1,5 @@
 extends RigidBody3D
+class_name Thought
 
 @onready var mesh: MeshInstance3D = $MeshInstance3D
 @onready var collider: CollisionShape3D = $CollisionShape3D
@@ -13,23 +14,164 @@ class ThoughtInfo:
 	
 var ThoughtInfos = [
 	ThoughtInfo.new(
-		"repressed 1",
-		"released 1"
+		"I've just been hurt so much in the past.",
+		"My expectation of pain has become a self-fufilling oroboros."
 	),
 	ThoughtInfo.new(
-		"repressed 2",
-		"released 2"
+		"I feel so ugly in this ugly world.",
+		"I not only inherited negative judgements of myself - but also the need to judge."
 	),
 	ThoughtInfo.new(
-		"repressed 3",
-		"released 3"
+		"The loneliness is crippling.",
+		"Some isolation is needed - to find myself, to heal."
 	),
+	ThoughtInfo.new(
+		"I’m never going to be enough.",
+		"I’ve been chasing someone else’s idea of 'enough'. Time to find my own."
+	),
+	ThoughtInfo.new(
+		"I can’t stop comparing myself to others.",
+		"It's just noise. Now I know that, and I can start to tune it out."
+	),
+	ThoughtInfo.new(
+		"I'm so tired of pretending everything's okay.",
+		"There are times for performance - but even more for real connection."
+	),
+	ThoughtInfo.new(
+		"I’m too much for people.",
+		"I'm afraid of my own intensity - it may not really be external at all."
+	),
+	ThoughtInfo.new(
+		"I'm a burden.",
+		"That belief was planted in me before I could speak — but I don't have to water it."
+	),
+	ThoughtInfo.new(
+		"I can’t trust anyone.",
+		"That was a survival lesson — but now I’m living, not just surviving."
+	),
+	ThoughtInfo.new(
+		"I ruin everything good.",
+		"I've run a successful self-sabotage campaign - but only because I believed I was unworthy."
+	),
+	ThoughtInfo.new(
+		"I'm always alone when I need someone most.",
+		"There is saftey in isolation - but even greater security in the right crowd."
+	),
+	ThoughtInfo.new(
+		"My body is disgusting.",
+		"Whose voice told me that - and what lead me to believing it?"
+	),
+	ThoughtInfo.new(
+		"Nothing I do really matters.",
+		"Maybe I've confused significance with spectacle."
+	),
+	ThoughtInfo.new(
+		"I shouldn't be this angry.",
+		"My anger cannot control every action - but it signals what matters deepest."
+	),
+	ThoughtInfo.new(
+		"I can't let anyone see the real me.",
+		"I can find reflections of myself even in the masks I make for others."
+	),
+	ThoughtInfo.new(
+		"I'm weak for feeling this way.",
+		"Feeling deeply is not weakness — it’s human."
+	),
+	ThoughtInfo.new(
+		"I'm not enough to earn anyone's love.",
+		"Love that must be earned was never truly love."
+	),
+	ThoughtInfo.new(
+		"I'm always behind everyone else.",
+		"There is no race. Only a rhythm."
+	),
+	ThoughtInfo.new(
+		"I’ve wasted so much time.",
+		"What if I was gathering what I needed all along?"
+	),
+	ThoughtInfo.new(
+		"I don’t know who I am anymore.",
+		"That uncertainty might be the soil where my true self is growing."
+	),
+	ThoughtInfo.new(
+		"Everything feels meaningless.",
+		"Perhaps meaning is never found — only made."
+	),
+	ThoughtInfo.new(
+		"I don't deserve forgiveness.",
+		"Even if I can’t forgive myself yet — I can stop punishing myself."
+	),
+	ThoughtInfo.new(
+		"I have to stay in control or everything falls apart.",
+		"Control helped me survive chaos — but now I can release my grip."
+	),
+	ThoughtInfo.new(
+		"I always disappoint people.",
+		"These are not my expectations - do they still serve me?"
+	),
+	ThoughtInfo.new(
+		"I'm too sensitive.",
+		"My sensitivity isn’t a flaw — it’s an antenna tuned to the unseen."
+	),
+	ThoughtInfo.new(
+		"No one would notice if I disappeared.",
+		"I may not be seen clearly — but that doesn't mean I'm invisible."
+	),
+	ThoughtInfo.new(
+		"I'm addicted to this pain.",
+		"Just because something is familiar does not make it healthy - nor forever."
+	),
+	ThoughtInfo.new(
+		"I don’t deserve rest.",
+		"Everyone deserves rest."
+	),
+	ThoughtInfo.new(
+		"I should be stronger than this.",
+		"Strength might look different than I was taught."
+	),
+	ThoughtInfo.new(
+		"I always need to fix myself.",
+		"Maybe there’s nothing to fix — just parts that need room to shift, writhe, and grow."
+	),
+	ThoughtInfo.new(
+		"I’m afraid I’ll always feel this way.",
+		"Feelings are like weather — even the darkest storm passes eventually."
+	),
+	ThoughtInfo.new(
+		"I can’t change — it’s too late.",
+		"Change doesn’t ask how old I am — only if I’m ready."
+	),
+	ThoughtInfo.new(
+		"I’m ashamed of who I am.",
+		"Shame is not identity — it’s just a shadow that is pretending to superceede the self."
+	),
+	ThoughtInfo.new(
+		"I don't belong anywhere.",
+		"Belonging isn’t found — it’s built, piece by piece."
+	),
+	ThoughtInfo.new(
+		"I always say the wrong thing.",
+		"Maybe silence was once safer — but now I’m learning to speak."
+	),
+	ThoughtInfo.new(
+		"I can’t escape my past.",
+		"My past shaped me — but it doesn’t have to steer me."
+	),
+	ThoughtInfo.new(
+		"People only like the version of me I create for them.",
+		"Only because I’ve mistaken approval for love."
+	),
+	ThoughtInfo.new(
+		"I'm afraid there's something fundamentally wrong with me.",
+		"I wear my fear like a scar — proof of nothing but my resiliance."
+	)
 ]
 var info: ThoughtInfo
 
 var is_hovering: bool = false
 # TODO what colors?
 var hover_color := Color(1.0, 0.8, 0.2)  # Goldish glow
+var released_color := Color(1.0, 1.0, 0.3)
 
 var original_color: Color
 
@@ -64,6 +206,10 @@ func _on_mouse_entered():
 	elif  mat is StandardMaterial3D:
 		mat.albedo_color = hover_color
 	SignalBus.client_thought.emit(info.repressed)
+	if released:
+		SignalBus.client_speak.emit(info.released)
+	else:
+		SignalBus.client_speak.emit("")
 
 func _on_mouse_exited():
 	is_hovering = false
@@ -72,3 +218,17 @@ func _on_mouse_exited():
 		mat.set_shader_parameter("Color", original_color)
 	elif  mat is StandardMaterial3D:
 		mat.albedo_color = original_color
+		
+var released = false
+func release():
+	released = true
+	SignalBus.thought_released.emit(info)
+	
+	original_color = released_color
+	var mat := mesh.get_active_material(0)
+	if mat is ShaderMaterial:
+		mat.set_shader_parameter("posMult", 0.03)
+		mat.set_shader_parameter("speed", 0.1)
+		mat.set_shader_parameter("Color", released_color)
+	elif  mat is StandardMaterial3D:
+		mat.albedo_color = released_color
