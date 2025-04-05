@@ -1,0 +1,20 @@
+fix the friggen color pallete! mats, 2d portraits, etc
+
+neeed people talking to eachother - lets do 2d for now, ya?
+need brain bg
+need 'thoughts' screen space dialogue (and people canvas dialogue)
+need some kind of score - maybe a timer that ticks down, and a limit on the number of questions?
+need 3 levels, then a win screen - maybe dream layer, childhood layer, subconsious layer?
+for more 'gamey-ness', could select a different 'cost' to each question (maybe 3 costs, 3 colors) - and have that also effect the timer?
+Then there is some skill in selecting the low cost questions?
+
+Questions can just be normal material - makes z fighting easier
+
+Don't think I'll have time - but would be cool to add something like 'if you get a ball to this space, all questions are free for 5s' or w/e - heals, delete random blockages, etc
+wind? 
+
+
+Thank you's:
+	chat-gpt for help with coding
+	xhaya for frenel shader code - https://godotshaders.com/shader/glowing-shield-beam-buble-dark-magic-fresnel/
+	

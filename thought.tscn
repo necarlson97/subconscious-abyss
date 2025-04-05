@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfbm1j0far6rr"]
+
+[ext_resource type="Script" uid="uid://db4mjosswornk" path="res://thought.gd" id="1_0hjb3"]
+[ext_resource type="Shader" uid="uid://bonruls2o30pe" path="res://fresnel.gdshader" id="1_evow1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_csfq3"]
+radius = 0.4
+
+[sub_resource type="Gradient" id="Gradient_evow1"]
+colors = PackedColorArray(0.605274, 0.605274, 0.605274, 1, 1, 1, 1, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_evow1"]
+width = 50
+height = 50
+color_ramp = SubResource("Gradient_evow1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0hjb3"]
+render_priority = 0
+shader = ExtResource("1_evow1")
+shader_parameter/Color = Color(0.446777, 0.446777, 0.446777, 1)
+shader_parameter/glow_color = Color(0.724818, 0.345295, 0.854434, 1)
+shader_parameter/dist = 0.5
+shader_parameter/speed = 1.0
+shader_parameter/glow_intensity = 2.0
+shader_parameter/glow_amount = 2.0
+shader_parameter/posMult = 0.1
+shader_parameter/noise = SubResource("NoiseTexture2D_evow1")
+
+[sub_resource type="SphereMesh" id="SphereMesh_evow1"]
+material = SubResource("ShaderMaterial_0hjb3")
+
+[node name="thought" type="RigidBody3D"]
+can_sleep = false
+script = ExtResource("1_0hjb3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("SphereShape3D_csfq3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("SphereMesh_evow1")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.944518, 0.624974, 0.925916, 1)
+light_energy = 0.05

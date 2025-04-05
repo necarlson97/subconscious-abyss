@@ -1,0 +1,30 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Subconscious Abyss"
+run/main_scene="uid://s72noart07he"
+config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+SignalBus="*res://signal_bus.tscn"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/orbit_camera/plugin.cfg")
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+limits/opengl/max_renderable_lights=40
+limits/opengl/max_lights_per_object=40

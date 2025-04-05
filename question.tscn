@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://hf35hhlcwvn"]
+
+[ext_resource type="Script" uid="uid://dfowrxgr28vjt" path="res://question.gd" id="1_g5b5r"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g5b5r"]
+height = 3.0
+radius = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lccfl"]
+transparency = 1
+albedo_color = Color(0.545155, 0.949653, 0.949993, 1)
+metallic = 1.0
+roughness = 0.52
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_g5b5r"]
+material = SubResource("StandardMaterial3D_lccfl")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 3.0
+
+[sub_resource type="Curve" id="Curve_lccfl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.564024, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_e0yn7"]
+curve = SubResource("Curve_lccfl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g5b5r"]
+emission_shape_scale = Vector3(0.05, 0.05, 1.5)
+emission_shape = 3
+emission_box_extents = Vector3(0.1, 0.1, 1)
+gravity = Vector3(0, 1, 0)
+scale_curve = SubResource("CurveTexture_e0yn7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g5b5r"]
+albedo_color = Color(0.95, 0.881917, 0.5415, 1)
+metallic = 1.0
+roughness = 0.82
+
+[sub_resource type="SphereMesh" id="SphereMesh_g5b5r"]
+material = SubResource("StandardMaterial3D_g5b5r")
+radius = 0.05
+height = 0.1
+
+[node name="question" type="Node3D"]
+script = ExtResource("1_g5b5r")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CylinderShape3D_g5b5r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_g5b5r")
+skeleton = NodePath("")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 0.48
+process_material = SubResource("ParticleProcessMaterial_g5b5r")
+draw_pass_1 = SubResource("SphereMesh_g5b5r")
