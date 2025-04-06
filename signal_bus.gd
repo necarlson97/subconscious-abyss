@@ -8,6 +8,8 @@ signal client_speak(text: String)
 signal therapist_thought(text: String)
 signal therapist_speak(text: String)
 
+signal preview_cost(cost: int)
 signal question_asked(cost: int)
 
 signal thought_released(info)
+signal finished()

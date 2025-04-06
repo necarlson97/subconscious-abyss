@@ -42,14 +42,18 @@ func get_min_stage_from_thoughts() -> int:
 	if thoughts.is_empty():
 		return 0
 
+	# for now - ignore ones we 'forgot' in prev stage
+	thoughts = thoughts.filter(func(t): return t.get_my_stage() >= _current_stage)
 	var highest_y = thoughts.map(func(t): return t.global_position.y).max()
+	if highest_y == null:
+		return 0
 	var offset_from_top = (pillar_height / 2.0) - highest_y
 	var stage = int(floor(offset_from_top / pillar_height))
 	return clamp(stage, 0, stage_count)
 
 func to_current_stage():
 	_tween_cam_to_stage(_current_stage)
-	# TODO anything else?
+	$StageSFX.play()
 	if _current_stage >= 3:
 		_on_finish()
 
@@ -68,7 +72,7 @@ func _on_finish():
 	if finished: return
 	finished = true
 	
-	# TODO play some kind of noise - sfxr?
+	$EndSFX.play()
 	
 	end_info.visible = true
 	for c in end_info.get_children():
@@ -80,6 +84,8 @@ func _on_finish():
 	var finish_area = $"bowl/FinishArea" as Area3D
 	finish_area.monitoring = false
 	get_tree().call_group("question", "handle_disappear")
+	
+	SignalBus.finished.emit()
 
 func _on_try_again() -> void:
 	get_tree().reload_current_scene()
@@ -87,5 +93,9 @@ func _on_try_again() -> void:
 func _input(event: InputEvent) -> void:
 	# Just debug - when user presses 0,
 	# fire off 'handle_disappear' on all nodes in the 'question' groun
-	if event is InputEventKey and event.pressed and event.keycode == KEY_0:
-		get_tree().call_group("question", "handle_disappear")
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_0:
+			get_tree().call_group("question", "handle_disappear")
+		if event.keycode == KEY_9:
+			SignalBus.question_asked.emit(3)
+	

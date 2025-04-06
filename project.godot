@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Subconscious Abyss"
-run/main_scene="uid://s72noart07he"
+run/main_scene="uid://dcc2cw68qs1wh"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 SignalBus="*res://signal_bus.tscn"
+MusicPlayer="*res://music_player.tscn"
 
 [editor_plugins]
 
@@ -33,4 +34,4 @@ thought=""
 renderer/rendering_method="gl_compatibility"
 limits/opengl/max_renderable_lights=40
 limits/opengl/max_lights_per_object=40
-environment/defaults/default_clear_color=Color(0.152941, 0.00784314, 0.0117647, 1)
+environment/defaults/default_clear_color=Color(0.0614084, 0.00195318, 0.00292622, 1)

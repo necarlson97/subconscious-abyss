@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=4 uid="uid://ieo04h8sjqqy"]
+[gd_scene load_steps=8 format=4 uid="uid://ieo04h8sjqqy"]
 
+[ext_resource type="Script" uid="uid://dc0e1la3pjhp0" path="res://bowl.gd" id="1_evrla"]
 [ext_resource type="Script" uid="uid://bdbjbrkm72wf0" path="res://finish_area.gd" id="1_l4bwr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pqn6d"]
@@ -50,6 +51,7 @@ data = PackedVector3Array(7.94349e-09, 0.666667, -1.98415, 0.387088, 1, -1.94602
 radius = 1.5
 
 [node name="bowl" type="Node3D"]
+script = ExtResource("1_evrla")
 
 [node name="main bowl" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
@@ -67,6 +69,8 @@ script = ExtResource("1_l4bwr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FinishArea"]
 shape = SubResource("CylinderShape3D_qu31s")
+
+[node name="FloatingThoughts" type="Node3D" parent="."]
 
 [connection signal="area_entered" from="FinishArea" to="FinishArea" method="_on_area_entered"]
 [connection signal="body_entered" from="FinishArea" to="FinishArea" method="_on_body_entered"]

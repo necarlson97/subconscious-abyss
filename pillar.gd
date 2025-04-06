@@ -24,6 +24,10 @@ func _ready():
 func _assign_question_costs():
 	var questions := get_children().filter(func(child): return child is Question)
 	questions.shuffle()
+	
+	# Default to cost 1
+	for q in questions:
+		q.set_cost(1)
 
 	# Assign cost 2 to first N
 	for q in questions.slice(0, med_cost):

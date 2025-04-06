@@ -169,9 +169,9 @@ var ThoughtInfos = [
 var info: ThoughtInfo
 
 var is_hovering: bool = false
-# TODO what colors?
-var hover_color := Color(1.0, 0.8, 0.2)  # Goldish glow
-var released_color := Color(1.0, 1.0, 0.3)
+
+var hover_color := Color.html("f7cb3b")
+var released_color := Color.html("ffffff")
 
 var original_color: Color
 
@@ -181,11 +181,19 @@ func _ready():
 	if mat:
 		var unique_mat = mat.duplicate()
 		mesh.set_surface_override_material(0, unique_mat)
+		
 		if mat is ShaderMaterial:
 			original_color = unique_mat.get_shader_parameter("Color")
-		elif  mat is StandardMaterial3D:
-			original_color = unique_mat.albedo_color
+			original_color = shift_color(original_color)
+			unique_mat.set_shader_parameter("Color", original_color)
 			
+		elif  mat is StandardMaterial3D:
+			original_color = shift_color(unique_mat.albedo_color)
+			unique_mat.albedo_color = original_color
+			
+	#hover_color = shift_color(hover_color)
+	#released_color = shift_color(released_color)
+	
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	
@@ -193,6 +201,10 @@ func _ready():
 	# E.g. counts up with each new thought node created
 	info = ThoughtInfos[get_index() % ThoughtInfos.size()]
 
+func shift_color(c: Color) -> Color:
+	var hue_shift = fmod(get_index() / 200.0, 1.0)
+	return Color.from_hsv(c.h + hue_shift, c.s, c.v)
+	
 func get_my_stage():
 	var pillar_height = 6
 	var offset_from_top = (pillar_height / 2.0) - global_position.y
@@ -223,12 +235,13 @@ var released = false
 func release():
 	released = true
 	SignalBus.thought_released.emit(info)
+	$ReleaseSFX.play()
 	
-	original_color = released_color
 	var mat := mesh.get_active_material(0)
 	if mat is ShaderMaterial:
 		mat.set_shader_parameter("posMult", 0.03)
 		mat.set_shader_parameter("speed", 0.1)
-		mat.set_shader_parameter("Color", released_color)
+		mat.set_shader_parameter("glow_color", released_color)
 	elif  mat is StandardMaterial3D:
 		mat.albedo_color = released_color
+		original_color = released_color

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d310krcstrcr2"]
+
+[ext_resource type="AudioStream" uid="uid://blv1866vu6if6" path="res://audio/lost-marbles.wav" id="1_fvyft"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_fvyft")
+volume_db = -3.081
+autoplay = true

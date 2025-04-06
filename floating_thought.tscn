@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2vmsd1pxorky"]
+
+[ext_resource type="Script" uid="uid://dj07djvsm5ik1" path="res://floating_thought.gd" id="1_lxmse"]
+
+[node name="FloatingThought" type="Node3D"]
+script = ExtResource("1_lxmse")
+
+[node name="Repressed" type="Label3D" parent="."]
+pixel_size = 0.003
+modulate = Color(0.462291, 0.462291, 0.462291, 1)
+outline_modulate = Color(0.0968456, 0.00483845, 0.00066219, 1)
+text = "I've just been hurt so much in the past."
+
+[node name="Released" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125916, 0)
+pixel_size = 0.003
+text = "My expectation of pain has become a self-fufilling oroboros."

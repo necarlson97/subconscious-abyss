@@ -4,7 +4,10 @@ class_name PatienceBar
 signal patience_empty
 
 @export_range(1, 60, 1) var duration_minutes := 5
-@export var stage_colors: Array[Color] = [Color.html("929fd3"), Color.html("90548c"), Color.html("4e386d")]
+@export var stage_colors: Array[Color] = [
+	Color.html("929fd3"), Color.html("90548c"), Color.html("4e386d")
+]
+@onready var cost_preview = $FollowParticles/CostPreview
 
 var _duration := 0.0
 var _patience_empty_fired := false
@@ -16,11 +19,15 @@ func _ready():
 	value = _duration
 	
 	SignalBus.question_asked.connect(question_asked)
+	SignalBus.preview_cost.connect(preview_cost)
+	SignalBus.finished.connect(on_finish)
 
 func _process(delta):
 	if _patience_empty_fired:
 		return
 
+	if freeze:
+		return
 	value -= delta
 	_update_color()
 	_update_particles()
@@ -37,6 +44,7 @@ func _update_color():
 	var fill_stylebox := StyleBoxFlat.new()
 	fill_stylebox.bg_color = color
 	add_theme_stylebox_override("fill", fill_stylebox)
+	$FollowParticles.modulate = color
 	
 func _update_particles():
 	if not $FollowParticles:
@@ -52,9 +60,32 @@ func _update_particles():
 	# Move particle node along the bar height
 	$FollowParticles.position.y = y_pos
 
-func question_asked(cost: int):
+func get_value_cost(cost: int):
 	# How many seconds to subtract per 'cost'
 	# - we square cost, to make penalty more obvious
 	var seconds_cost = 3.0
-	value -= (cost * cost) * seconds_cost
-	value = max(value, 0)	
+	return (cost * cost) * seconds_cost
+
+func question_asked(cost: int):
+	value -= get_value_cost(cost)
+	value = max(value, 0)
+	$FollowParticles/CostParticles.modulate = get_cost_color(cost)
+
+func get_cost_color(cost: int):
+	# TODO gross but for now I'm just duplicating cost
+	# colors here cuz array const replacements are fussy
+	var colors =[
+		"80ffdb",
+		"5e60ce",
+		"8f1d45"
+	]
+	return Color.html(colors[cost-1])
+	
+func preview_cost(cost: int):
+	cost_preview.size.y = (get_value_cost(cost) / 300.0) * size.y
+	cost_preview.color = get_cost_color(cost)
+	
+var freeze = false
+func on_finish():
+	freeze = true
+	$FollowParticles.emitting = false

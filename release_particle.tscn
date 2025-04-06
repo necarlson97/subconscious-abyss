@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcuvq7nm4jigx"]
+
+[ext_resource type="Script" uid="uid://di1m1ddtrs6l5" path="res://release_particle.gd" id="1_f6vlj"]
+[ext_resource type="Texture2D" uid="uid://hyxungpruw2l" path="res://pics/lightbulb.png" id="1_hxwve"]
+
+[sub_resource type="Curve" id="Curve_hxwve"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.700565, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_eifwi"]
+curve = SubResource("Curve_hxwve")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5kc73"]
+particle_flag_disable_z = true
+angle_min = -5.49999
+angle_max = 5.50001
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 39.6
+initial_velocity_max = 87.12
+gravity = Vector3(0, -50, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_eifwi")
+
+[node name="ReleaseParticles" type="GPUParticles2D"]
+emitting = false
+amount = 1
+texture = ExtResource("1_hxwve")
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_5kc73")
+script = ExtResource("1_f6vlj")

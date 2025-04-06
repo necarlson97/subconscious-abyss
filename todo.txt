@@ -1,20 +1,27 @@
-fix the friggen color pallete! mats, 2d portraits, etc
+glass sfx, release sfx, finished sfx, scene change sfx
+button and menu sfx (?)
+have the realizations appear accross the top - and float away?
 
-neeed people talking to eachother - lets do 2d for now, ya?
-need brain bg
-need 'thoughts' screen space dialogue (and people canvas dialogue)
+done:
+	hue swap the balls
+	need 'thoughts' screen space dialogue (and people canvas dialogue)
 need some kind of score - maybe a timer that ticks down, and a limit on the number of questions?
-need 3 levels, then a win screen - maybe dream layer, childhood layer, subconsious layer?
-for more 'gamey-ness', could select a different 'cost' to each question (maybe 3 costs, 3 colors) - and have that also effect the timer?
-Then there is some skill in selecting the low cost questions?
+	need brain bg
+	neeed people talking to eachother - lets do 2d for now, ya?
+	need 3 levels, then a win screen - maybe dream layer, childhood layer, subconsious layer?
+	for more 'gamey-ness', could select a different 'cost' to each question (maybe 3 costs, 3 colors) - and have that also effect the timer?
+	Questions can just be normal material - makes z fighting easier
 
-Questions can just be normal material - makes z fighting easier
-
-Don't think I'll have time - but would be cool to add something like 'if you get a ball to this space, all questions are free for 5s' or w/e - heals, delete random blockages, etc
-wind? 
-
+moot:
+	Then there is some skill in selecting the low cost questions?
+	Don't think I'll have time - but would be cool to add something like 'if you get a ball to this space, all questions are free for 5s' or w/e - heals, delete random blockages, etc
+	wind? 
 
 Thank you's:
+	probs sfxr
+	beepbox.co
+	mp3cut.net
+	S.O.
 	chat-gpt for help with coding
 	xhaya for frenel shader code - https://godotshaders.com/shader/glowing-shield-beam-buble-dark-magic-fresnel/
 	

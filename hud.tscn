@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dts5n1j1ihkxb"]
+[gd_scene load_steps=26 format=3 uid="uid://dts5n1j1ihkxb"]
 
 [ext_resource type="Texture2D" uid="uid://ykmgwul62htf" path="res://pics/thought bubble.png" id="1_2d608"]
 [ext_resource type="Script" uid="uid://b5q3ae0es5ocw" path="res://end_info.gd" id="1_pw7dr"]
@@ -16,8 +16,11 @@
 [ext_resource type="AudioStream" uid="uid://ccwdepewmq3uv" path="res://audio/speech/ee.wav" id="13_o2hcl"]
 [ext_resource type="Texture2D" uid="uid://cfrdqrjj7yksh" path="res://pics/patient - neutral.png" id="14_gh5fi"]
 [ext_resource type="Script" uid="uid://bl540juhmmd5y" path="res://patience_bar.gd" id="15_nx880"]
+[ext_resource type="Script" uid="uid://c4uo5w6bfoa3v" path="res://portrait.gd" id="16_ap7yk"]
 [ext_resource type="Material" uid="uid://bkmqbid43ikma" path="res://mats/follow_particles.tres" id="16_w71nf"]
+[ext_resource type="Script" uid="uid://b71yt7dc6hpu0" path="res://release_particles.gd" id="17_5kc73"]
 [ext_resource type="Script" uid="uid://cntnpkl2aqgo5" path="res://cost_particles.gd" id="17_615i1"]
+[ext_resource type="PackedScene" uid="uid://bcuvq7nm4jigx" path="res://release_particle.tscn" id="18_bp16l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
 
@@ -115,6 +118,7 @@ size_flags_stretch_ratio = 2.0
 texture = ExtResource("3_615i1")
 expand_mode = 1
 stretch_mode = 4
+script = ExtResource("16_ap7yk")
 
 [node name="Speech" type="TextureRect" parent="VBoxContainer2"]
 layout_mode = 2
@@ -180,6 +184,7 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="ReleaseLog" type="Label" parent="HBoxContainer/VBoxContainer3/MarginContainer"]
+visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 3
@@ -227,6 +232,12 @@ size_flags_stretch_ratio = 2.0
 texture = ExtResource("14_gh5fi")
 expand_mode = 3
 stretch_mode = 5
+script = ExtResource("16_ap7yk")
+
+[node name="ReleaseParticles" type="Node2D" parent="HBoxContainer/VBoxContainer3/Portrait"]
+position = Vector2(154, 22)
+script = ExtResource("17_5kc73")
+release_particle = ExtResource("18_bp16l")
 
 [node name="Speech" type="TextureRect" parent="HBoxContainer/VBoxContainer3"]
 layout_mode = 2
@@ -288,6 +299,11 @@ one_shot = true
 explosiveness = 0.72
 process_material = SubResource("ParticleProcessMaterial_ap7yk")
 script = ExtResource("17_615i1")
+
+[node name="CostPreview" type="ColorRect" parent="HBoxContainer/MarginContainer/HBoxContainer/ProgressBar/FollowParticles"]
+offset_left = -25.0
+offset_right = -18.0
+color = Color(0.572549, 0.623529, 0.827451, 1)
 
 [node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer/MarginContainer/HBoxContainer/ProgressBar"]
 layout_mode = 1

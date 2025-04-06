@@ -171,8 +171,8 @@ func set_cost(set_cost=1):
 	# Change the color to match cost
 	var colors =[
 		"80ffdb",
-		"48bfe3",
 		"5e60ce",
+		"8f1d45"
 	]
 	original_color = Color.html(colors[cost-1])
 	
@@ -200,11 +200,13 @@ func _on_mouse_entered():
 	elif  mat is StandardMaterial3D:
 		mat.albedo_color = hover_color
 	SignalBus.therapist_thought.emit(question_text)
+	SignalBus.preview_cost.emit(cost)
 	
 func _on_mouse_exited():
 	if clicked:
 		return
 	is_hovering = false
+	SignalBus.preview_cost.emit(0)
 	var mat := mesh.get_active_material(0)
 	if mat is ShaderMaterial:
 		mat.set_shader_parameter("Color", original_color)
@@ -219,9 +221,11 @@ func _input(event):
 		handle_disappear()
 		SignalBus.therapist_speak.emit(question_text)
 		SignalBus.question_asked.emit(cost)
+		SignalBus.preview_cost.emit(0)
 		
 		await get_tree().create_timer(1.0).timeout
 		SignalBus.client_speak.emit(response_text)
+		
 
 func handle_disappear():
 	flash_material()
@@ -238,6 +242,9 @@ func flash_material():
 		mat.set_shader_parameter("Color", flash_color)
 	elif  mat is StandardMaterial3D:
 		mat.albedo_color = flash_color
+		# Has 'depth' issues when set to use transparency
+		# - but we can use it as it is being deleted 
+		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	await get_tree().create_timer(0.1).timeout
 	
 func _process(delta: float) -> void:

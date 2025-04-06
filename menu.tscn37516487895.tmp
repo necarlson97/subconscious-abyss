@@ -1,0 +1,341 @@
+[gd_scene load_steps=10 format=3 uid="uid://dcc2cw68qs1wh"]
+
+[ext_resource type="PackedScene" uid="uid://pk6sb5lew7yn" path="res://bg.tscn" id="1_ecwwl"]
+[ext_resource type="Texture2D" uid="uid://cfrdqrjj7yksh" path="res://pics/patient - neutral.png" id="2_kk3ma"]
+[ext_resource type="Texture2D" uid="uid://biyl7tljk6app" path="res://pics/therapist - neutral.png" id="3_nrnbx"]
+[ext_resource type="PackedScene" uid="uid://cfbm1j0far6rr" path="res://thought.tscn" id="4_iqepy"]
+[ext_resource type="Script" uid="uid://wrxmlqibfrk1" path="res://menu_camera.gd" id="4_kk3ma"]
+[ext_resource type="Script" uid="uid://c1b51u0j8kopq" path="res://play_button.gd" id="5_h1wq0"]
+[ext_resource type="PackedScene" uid="uid://cxda217su44gj" path="res://tutorial_photo.tscn" id="6_dwrpx"]
+[ext_resource type="PackedScene" uid="uid://s72noart07he" path="res://main.tscn" id="7_g7jxm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vv6l3"]
+size = Vector3(8, 5, 2)
+
+[node name="Cover photo" type="Node3D"]
+
+[node name="bg" parent="." instance=ExtResource("1_ecwwl")]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 0, 0)
+texture = ExtResource("2_kk3ma")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1, 0, 0)
+texture = ExtResource("3_nrnbx")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.08313, 1.81383)
+script = ExtResource("4_kk3ma")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.50778, 0)
+shape = SubResource("BoxShape3D_vv6l3")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.83847)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27175, 0)
+shape = SubResource("BoxShape3D_vv6l3")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.92171)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27175, 0)
+shape = SubResource("BoxShape3D_vv6l3")
+
+[node name="thoughts" type="Node3D" parent="."]
+
+[node name="thought" parent="thoughts" instance=ExtResource("4_iqepy")]
+
+[node name="thought2" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.605406, 0.105987)
+
+[node name="thought3" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21558, 0)
+
+[node name="thought4" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80562, 0.105987)
+
+[node name="thought5" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25247, 0.105987)
+
+[node name="thought6" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.80535, 0)
+
+[node name="thought7" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.27687, 0.105987)
+
+[node name="thought8" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.552151, 0, 0)
+
+[node name="thought9" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.552151, 0.605406, 0)
+
+[node name="thought10" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.552151, 1.21558, 0.105987)
+
+[node name="thought11" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.552151, 1.80562, 0)
+
+[node name="thought12" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.552151, 2.25247, 0.105987)
+
+[node name="thought13" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.552151, 2.80535, 0)
+
+[node name="thought14" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.552151, 3.27687, 0.105987)
+
+[node name="thought15" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0942, 0, 0)
+
+[node name="thought16" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0942, 0.605406, 0.105987)
+
+[node name="thought17" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0942, 1.21558, 0)
+
+[node name="thought18" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0942, 1.80562, 0)
+
+[node name="thought19" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0942, 2.25247, 0.105987)
+
+[node name="thought20" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0942, 2.80535, 0)
+
+[node name="thought21" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0942, 3.27687, 0.105987)
+
+[node name="thought22" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66295, 0, 0)
+
+[node name="thought23" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66295, 0.605406, 0)
+
+[node name="thought24" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66295, 1.21558, 0.105987)
+
+[node name="thought25" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66295, 1.80562, 0)
+
+[node name="thought26" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66295, 2.25247, 0)
+
+[node name="thought27" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66295, 2.80535, 0.105987)
+
+[node name="thought28" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66295, 3.27687, 0)
+
+[node name="thought29" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21833, 0, 0.105987)
+
+[node name="thought30" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21833, 0.605406, 0)
+
+[node name="thought31" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21833, 1.21558, 0.105987)
+
+[node name="thought32" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21833, 1.80562, 0)
+
+[node name="thought33" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21833, 2.25247, 0)
+
+[node name="thought34" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21833, 2.80535, 0.105987)
+
+[node name="thought35" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21833, 3.27687, 0.105987)
+
+[node name="thought36" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80127, 0, 0)
+
+[node name="thought37" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80127, 0.605406, 0.105987)
+
+[node name="thought38" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80127, 1.21558, 0)
+
+[node name="thought39" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80127, 1.80562, 0.105987)
+
+[node name="thought40" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80127, 2.25247, 0)
+
+[node name="thought41" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80127, 2.80535, 0.105987)
+
+[node name="thought42" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80127, 3.27687, 0)
+
+[node name="thought43" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.33062, 0, 0.105987)
+
+[node name="thought44" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.33062, 0.605406, 0)
+
+[node name="thought45" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.33062, 1.21558, 0.105987)
+
+[node name="thought46" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.33062, 1.80562, 0)
+
+[node name="thought47" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.33062, 2.25247, 0.105987)
+
+[node name="thought48" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.33062, 2.80535, 0)
+
+[node name="thought49" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.33062, 3.27687, 0.105987)
+
+[node name="thought50" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77847, 0, 0)
+
+[node name="thought51" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77847, 0.605406, 0.105987)
+
+[node name="thought52" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77847, 1.21558, 0)
+
+[node name="thought53" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77847, 1.80562, 0.105987)
+
+[node name="thought54" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77847, 2.25247, 0)
+
+[node name="thought55" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77847, 2.80535, 0.105987)
+
+[node name="thought56" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77847, 3.27687, 0.105987)
+
+[node name="thought57" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23642, 0, 0)
+
+[node name="thought58" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23642, 0.605406, 0.105987)
+
+[node name="thought59" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23642, 1.21558, 0)
+
+[node name="thought60" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23642, 1.80562, 0.105987)
+
+[node name="thought61" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23642, 2.25247, 0)
+
+[node name="thought62" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23642, 2.80535, 0)
+
+[node name="thought63" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23642, 3.27687, 0.105987)
+
+[node name="thought64" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.66767, 0, 0)
+
+[node name="thought65" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.66767, 0.605406, 0)
+
+[node name="thought66" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.66767, 1.21558, 0.105987)
+
+[node name="thought67" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.66767, 1.80562, 0.105987)
+
+[node name="thought68" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.66767, 2.25247, 0)
+
+[node name="thought69" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.66767, 2.80535, 0)
+
+[node name="thought70" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.66767, 3.27687, 0.105987)
+
+[node name="thought71" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11229, 0, 0)
+
+[node name="thought72" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11229, 0.605406, 0)
+
+[node name="thought73" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11229, 1.21558, 0.105987)
+
+[node name="thought74" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11229, 1.80562, 0.105987)
+
+[node name="thought75" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11229, 2.25247, 0)
+
+[node name="thought76" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11229, 2.80535, 0)
+
+[node name="thought77" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11229, 3.27687, 0.105987)
+
+[node name="thought78" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.529352, 0, 0)
+
+[node name="thought79" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.529352, 0.605406, 0)
+
+[node name="thought80" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.529352, 1.21558, 0.105987)
+
+[node name="thought81" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.529352, 1.80562, 0)
+
+[node name="thought82" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.529352, 2.25247, 0)
+
+[node name="thought83" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.529352, 2.80535, 0.105987)
+
+[node name="thought84" parent="thoughts" instance=ExtResource("4_iqepy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.529352, 3.27687, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -69.5
+offset_bottom = 69.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true
+text = "[b]Subconsious Abyss[/b]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Tutorial"
+script = ExtResource("5_h1wq0")
+scene = ExtResource("6_dwrpx")
+
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Play"
+script = ExtResource("5_h1wq0")
+scene = ExtResource("7_g7jxm")

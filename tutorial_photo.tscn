@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxda217su44gj"]
+
+[ext_resource type="Texture2D" uid="uid://cr0i7g730ewmv" path="res://pics/tutorial photo.png" id="1_je3vn"]
+[ext_resource type="Script" uid="uid://c1b51u0j8kopq" path="res://play_button.gd" id="2_1yr88"]
+[ext_resource type="PackedScene" uid="uid://s72noart07he" path="res://main.tscn" id="3_3w5gr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_je3vn"]
+bg_color = Color(0, 0, 0, 0.917647)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="tutorial photo" type="Node3D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_je3vn")
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 392.0
+offset_top = 560.0
+offset_right = 517.0
+offset_bottom = 631.0
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_je3vn")
+text = "Play"
+script = ExtResource("2_1yr88")
+scene = ExtResource("3_3w5gr")
