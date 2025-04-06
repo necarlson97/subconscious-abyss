@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dts5n1j1ihkxb"]
+[gd_scene load_steps=40 format=3 uid="uid://dts5n1j1ihkxb"]
 
 [ext_resource type="Texture2D" uid="uid://ykmgwul62htf" path="res://pics/thought bubble.png" id="1_2d608"]
 [ext_resource type="Script" uid="uid://b5q3ae0es5ocw" path="res://end_info.gd" id="1_pw7dr"]
@@ -25,6 +25,8 @@
 [ext_resource type="Script" uid="uid://cntnpkl2aqgo5" path="res://cost_particles.gd" id="17_615i1"]
 [ext_resource type="PackedScene" uid="uid://bcuvq7nm4jigx" path="res://release_particle.tscn" id="18_bp16l"]
 [ext_resource type="Texture2D" uid="uid://dxd67mep1bqs1" path="res://pics/patient - blink.png" id="22_8w6vd"]
+[ext_resource type="Texture2D" uid="uid://b58bww6iccgqe" path="res://pics/sweat.png" id="23_shnbk"]
+[ext_resource type="Script" uid="uid://da2ke5oydwj1w" path="res://sweat_particles.gd" id="24_o2hcl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bp16l"]
 bg_color = Color(0, 0, 0, 0.945098)
@@ -40,6 +42,29 @@ bg_color = Color(0.45, 0.0765, 0.2508, 0.862745)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5iihh"]
 bg_color = Color(0, 0, 0, 0.878431)
+
+[sub_resource type="Curve" id="Curve_o2hcl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.103746, 0.867045), 0.0, 0.0, 0, 0, Vector2(0.700565, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_gh5fi"]
+curve = SubResource("Curve_o2hcl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nx880"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 30.0
+angle_min = -5.49999
+angle_max = 5.50001
+direction = Vector3(0, 0, 0)
+initial_velocity_min = 39.6
+initial_velocity_max = 60.38
+gravity = Vector3(0, 100, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_gh5fi")
+color = Color(1, 1, 1, 0.811765)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
 
@@ -169,7 +194,7 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 texture = ExtResource("3_615i1")
-expand_mode = 1
+expand_mode = 3
 stretch_mode = 4
 script = ExtResource("16_ap7yk")
 
@@ -183,7 +208,7 @@ grow_vertical = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 texture = ExtResource("7_rgb5v")
-expand_mode = 1
+expand_mode = 3
 stretch_mode = 4
 script = ExtResource("8_np8ax")
 
@@ -306,6 +331,7 @@ script = ExtResource("17_5kc73")
 release_particle = ExtResource("18_bp16l")
 
 [node name="Blink" type="TextureRect" parent="HBoxContainer/VBoxContainer3/Portrait"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -319,6 +345,15 @@ expand_mode = 3
 stretch_mode = 5
 script = ExtResource("8_np8ax")
 closed_time = 0.33
+
+[node name="SweatParticles" parent="HBoxContainer/VBoxContainer3/Portrait" instance=ExtResource("18_bp16l")]
+position = Vector2(125, 90)
+amount = 3
+texture = ExtResource("23_shnbk")
+lifetime = 2.0
+one_shot = false
+process_material = SubResource("ParticleProcessMaterial_nx880")
+script = ExtResource("24_o2hcl")
 
 [node name="Speech" type="TextureRect" parent="HBoxContainer/VBoxContainer3"]
 layout_mode = 2

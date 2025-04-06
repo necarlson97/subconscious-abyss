@@ -1,7 +1,8 @@
+Different portrait for crisis mode?
 button and menu sfx (?)
-readme and desc
 
 done:
+	readme and desc
 	different shapes
 	character blinks
 	sfx for remove question
