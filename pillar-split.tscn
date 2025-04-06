@@ -84,7 +84,7 @@ num_questions = 12
 y_offset_range = 0.3
 xz_jitter_range = 0.05
 med_cost = 3
-high_cost = 2
+high_cost = 1
 
 [node name="QuestionSpawner2" type="Node3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.3789)
@@ -94,4 +94,4 @@ num_questions = 12
 y_offset_range = 0.3
 xz_jitter_range = 0.05
 med_cost = 3
-high_cost = 2
+high_cost = 1

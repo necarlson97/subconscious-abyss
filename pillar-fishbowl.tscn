@@ -63,11 +63,11 @@ shape = SubResource("ConcavePolygonShape3D_vydla")
 
 [node name="QuestionSpawner" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.716409, 0)
-num_questions = 8
+num_questions = 6
 y_offset_range = 0.3
 xz_jitter_range = 0.3
 strategy = 1
-med_cost = 2
+med_cost = 1
 high_cost = 1
 
 [node name="QuestionSpawner2" type="Node3D" parent="." index="3"]
@@ -78,4 +78,4 @@ y_offset_range = 1.0
 xz_jitter_range = 0.3
 strategy = 1
 med_cost = 3
-high_cost = 2
+high_cost = 1

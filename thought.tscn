@@ -1,8 +1,13 @@
-[gd_scene load_steps=22 format=4 uid="uid://cfbm1j0far6rr"]
+[gd_scene load_steps=25 format=4 uid="uid://cfbm1j0far6rr"]
 
 [ext_resource type="Script" uid="uid://db4mjosswornk" path="res://thought.gd" id="1_0hjb3"]
 [ext_resource type="Shader" uid="uid://bonruls2o30pe" path="res://fresnel.gdshader" id="1_evow1"]
+[ext_resource type="PackedScene" uid="uid://da7rsa6vo2n0k" path="res://simple-shapes.blend" id="2_1wr1o"]
 [ext_resource type="AudioStream" uid="uid://c43gcl6lrbmfj" path="res://audio/short-up.wav" id="3_g3v54"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_1wr1o"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1wr1o"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_csfq3"]
 radius = 0.4
@@ -89,6 +94,17 @@ contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_0hjb3")
 
+[node name="simple-shapes" parent="." instance=ExtResource("2_1wr1o")]
+
+[node name="sphere" type="MeshInstance3D" parent="simple-shapes"]
+mesh = SubResource("SphereMesh_1wr1o")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="simple-shapes/sphere"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="simple-shapes/sphere/StaticBody3D"]
+shape = SubResource("SphereShape3D_1wr1o")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("SphereShape3D_csfq3")
@@ -114,3 +130,5 @@ max_db = -10.0
 pitch_scale = 1.4
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+
+[editable path="simple-shapes"]

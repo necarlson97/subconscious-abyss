@@ -212,6 +212,24 @@ func _ready():
 	# TODO is there a nice clean way to get my 'index' here?
 	# E.g. counts up with each new thought node created
 	info = ThoughtInfos[get_index() % ThoughtInfos.size()]
+	
+	set_shape()
+
+func set_shape():
+	# Choose a random mesh and collider from the
+	# simple-shapes children (from blender)
+	
+	# They are much more janky than spheres - so for now, only 1 of each
+	var shapes = $"simple-shapes".get_children().filter(func(s): return s.visible)
+	# make the shapes the last to spawn - rather than the first
+	var s_idx = abs(40-get_index())
+	if s_idx < shapes.size():
+		# qol - only choose from shapes that are visible
+		var shape_info = shapes[s_idx] as MeshInstance3D
+		var col_info = shape_info.get_node("StaticBody3D/CollisionShape3D") as CollisionShape3D
+		$MeshInstance3D.mesh = shape_info.mesh
+		$CollisionShape3D.shape = col_info.shape
+	$"simple-shapes".queue_free()
 
 func shift_color(c: Color) -> Color:
 	var hue_shift = fmod(get_index() / 200.0, 1.0)

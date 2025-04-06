@@ -6,7 +6,6 @@ class_name Dialogue
 @onready var text_label = $Label as Label
 
 func _ready():
-	text_label.text = " "
 	SignalBus.connect(listen_signal, Callable(self, "_on_signal"))
 
 func _process(delta):

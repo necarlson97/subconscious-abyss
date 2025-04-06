@@ -1,9 +1,9 @@
-different shapes
-character mouths? blinks? other?
 button and menu sfx (?)
 readme and desc
 
 done:
+	different shapes
+	character blinks
 	sfx for remove question
 	way to get to menu from anywhere - escape
 	crisis mode
@@ -22,15 +22,3 @@ moot:
 	Then there is some skill in selecting the low cost questions?
 	Don't think I'll have time - but would be cool to add something like 'if you get a ball to this space, all questions are free for 5s' or w/e - heals, delete random blockages, etc
 	wind? 
-
-Thank you's:
-	probs sfxr
-	beepbox.co
-	mp3cut.net
-	S.O.
-	Rachel McNassor
-	chat-gpt for help with coding
-	xhaya for frenel shader code - https://godotshaders.com/shader/glowing-shield-beam-buble-dark-magic-fresnel/
-	coolors.co
-	textstudio.com
-	
