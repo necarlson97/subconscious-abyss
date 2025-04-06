@@ -233,6 +233,7 @@ func handle_disappear():
 	collider.disabled = true
 	particles.restart()
 	particles.emitting = true
+	$RemoveSFX.play()
 	await get_tree().create_timer(particles.lifetime * 2).timeout
 	queue_free()
 
@@ -250,3 +251,4 @@ func flash_material():
 func _process(delta: float) -> void:
 	if particles.emitting:
 		mesh.get_active_material(0).albedo_color.a -= 2.0 * delta
+		position += transform.basis.z * delta * 3.0

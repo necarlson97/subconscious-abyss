@@ -80,7 +80,7 @@ shape = SubResource("ConcavePolygonShape3D_2255o")
 
 [node name="QuestionSpawner" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.1872)
-num_questions = 13
+num_questions = 12
 y_offset_range = 0.3
 xz_jitter_range = 0.05
 med_cost = 3
@@ -90,7 +90,7 @@ high_cost = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.3789)
 script = ExtResource("3_enuwr")
 question_scene = ExtResource("4_p136u")
-num_questions = 13
+num_questions = 12
 y_offset_range = 0.3
 xz_jitter_range = 0.05
 med_cost = 3

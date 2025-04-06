@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://b35leu5nyvfry"]
+[gd_scene load_steps=9 format=4 uid="uid://b35leu5nyvfry"]
 
 [ext_resource type="PackedScene" uid="uid://dyx3j1lt442dg" path="res://pillar.tscn" id="1_b1m6j"]
 [ext_resource type="Material" uid="uid://dw8lwxeespb75" path="res://mats/glass_fresnel.tres" id="2_2jsux"]
+[ext_resource type="PackedScene" uid="uid://hf35hhlcwvn" path="res://question.tscn" id="3_cefpt"]
+[ext_resource type="Script" uid="uid://ec2fb6ftmf23" path="res://question_spawner.gd" id="3_dnbed"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pqn6d"]
 resource_name = "glass"
@@ -60,5 +62,20 @@ surface_material_override/0 = ExtResource("2_2jsux")
 shape = SubResource("ConcavePolygonShape3D_vydla")
 
 [node name="QuestionSpawner" parent="." index="2"]
-num_questions = 20
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.716409, 0)
+num_questions = 8
+y_offset_range = 0.3
+xz_jitter_range = 0.3
 strategy = 1
+med_cost = 2
+high_cost = 1
+
+[node name="QuestionSpawner2" type="Node3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.07859, 0)
+script = ExtResource("3_dnbed")
+question_scene = ExtResource("3_cefpt")
+y_offset_range = 1.0
+xz_jitter_range = 0.3
+strategy = 1
+med_cost = 3
+high_cost = 2

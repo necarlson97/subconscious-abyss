@@ -1,6 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://hf35hhlcwvn"]
+[gd_scene load_steps=27 format=3 uid="uid://hf35hhlcwvn"]
 
 [ext_resource type="Script" uid="uid://dfowrxgr28vjt" path="res://question.gd" id="1_g5b5r"]
+[ext_resource type="AudioStream" uid="uid://2l65l2l3vxav" path="res://audio/metal-slide/metal-slide (0).mp3" id="2_cxkpo"]
+[ext_resource type="AudioStream" uid="uid://bysbcba5ka50" path="res://audio/metal-slide/metal-slide (1).mp3" id="3_ey7hi"]
+[ext_resource type="AudioStream" uid="uid://cn72683dg0qpa" path="res://audio/metal-slide/metal-slide (10).mp3" id="4_webp7"]
+[ext_resource type="AudioStream" uid="uid://lc4avpry02u1" path="res://audio/metal-slide/metal-slide (11).mp3" id="5_i6pad"]
+[ext_resource type="AudioStream" uid="uid://rq2mlav1vb0f" path="res://audio/metal-slide/metal-slide (12).mp3" id="6_bur1r"]
+[ext_resource type="AudioStream" uid="uid://dopg7k4gp473k" path="res://audio/metal-slide/metal-slide (13).mp3" id="7_ewqfv"]
+[ext_resource type="AudioStream" uid="uid://cb8dyews8nglt" path="res://audio/metal-slide/metal-slide (14).mp3" id="8_yxk2e"]
+[ext_resource type="AudioStream" uid="uid://behk0smuyjg3b" path="res://audio/metal-slide/metal-slide (15).mp3" id="9_xyoj6"]
+[ext_resource type="AudioStream" uid="uid://bk6okvacls3gj" path="res://audio/metal-slide/metal-slide (2).mp3" id="10_w20kw"]
+[ext_resource type="AudioStream" uid="uid://crrlsqqgl2vj5" path="res://audio/metal-slide/metal-slide (3).mp3" id="11_acit8"]
+[ext_resource type="AudioStream" uid="uid://bsyspvikora8w" path="res://audio/metal-slide/metal-slide (4).mp3" id="12_5pnl1"]
+[ext_resource type="AudioStream" uid="uid://dml5bvtkr6wpk" path="res://audio/metal-slide/metal-slide (5).mp3" id="13_gjgpg"]
+[ext_resource type="AudioStream" uid="uid://6n3e03xbdvyi" path="res://audio/metal-slide/metal-slide (6).mp3" id="14_soibp"]
+[ext_resource type="AudioStream" uid="uid://bctvlvfp75jg3" path="res://audio/metal-slide/metal-slide (7).mp3" id="15_u1x8k"]
+[ext_resource type="AudioStream" uid="uid://d1xr2aymujwie" path="res://audio/metal-slide/metal-slide (8).mp3" id="16_4cmp3"]
+[ext_resource type="AudioStream" uid="uid://bi37agfccx8ar" path="res://audio/metal-slide/metal-slide (9).mp3" id="17_8ggyq"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_g5b5r"]
 height = 3.0
@@ -41,6 +57,26 @@ material = SubResource("StandardMaterial3D_g5b5r")
 radius = 0.05
 height = 0.1
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6thqu"]
+random_pitch = 1.1
+streams_count = 16
+stream_0/stream = ExtResource("2_cxkpo")
+stream_1/stream = ExtResource("3_ey7hi")
+stream_2/stream = ExtResource("10_w20kw")
+stream_3/stream = ExtResource("11_acit8")
+stream_4/stream = ExtResource("12_5pnl1")
+stream_5/stream = ExtResource("13_gjgpg")
+stream_6/stream = ExtResource("14_soibp")
+stream_7/stream = ExtResource("15_u1x8k")
+stream_8/stream = ExtResource("16_4cmp3")
+stream_9/stream = ExtResource("17_8ggyq")
+stream_10/stream = ExtResource("4_webp7")
+stream_11/stream = ExtResource("5_i6pad")
+stream_12/stream = ExtResource("6_bur1r")
+stream_13/stream = ExtResource("7_ewqfv")
+stream_14/stream = ExtResource("8_yxk2e")
+stream_15/stream = ExtResource("9_xyoj6")
+
 [node name="question" type="Node3D" groups=["question"]]
 script = ExtResource("1_g5b5r")
 
@@ -62,3 +98,7 @@ one_shot = true
 explosiveness = 0.48
 process_material = SubResource("ParticleProcessMaterial_g5b5r")
 draw_pass_1 = SubResource("SphereMesh_g5b5r")
+
+[node name="RemoveSFX" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_6thqu")
+volume_db = -4.0

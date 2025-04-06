@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 SignalBus="*res://signal_bus.tscn"
 MusicPlayer="*res://music_player.tscn"
+Difficulty="*res://difficulty.gd"
+GlobalInput="*res://global_input.gd"
 
 [editor_plugins]
 

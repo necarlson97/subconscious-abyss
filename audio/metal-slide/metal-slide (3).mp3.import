@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://crrlsqqgl2vj5"
+path="res://.godot/imported/metal-slide (3).mp3-22e85749dcf680b4456d09a30f9b7ace.mp3str"
+
+[deps]
+
+source_file="res://audio/metal-slide/metal-slide (3).mp3"
+dest_files=["res://.godot/imported/metal-slide (3).mp3-22e85749dcf680b4456d09a30f9b7ace.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

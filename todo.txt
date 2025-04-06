@@ -1,8 +1,12 @@
+different shapes
 character mouths? blinks? other?
 button and menu sfx (?)
-
+readme and desc
 
 done:
+	sfx for remove question
+	way to get to menu from anywhere - escape
+	crisis mode
 	glass sfx, release sfx, finished sfx, scene change sfx
 	hue swap the balls
 	need 'thoughts' screen space dialogue (and people canvas dialogue)

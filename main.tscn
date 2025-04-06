@@ -70,6 +70,9 @@ text = ""
 [node name="Button" parent="hud/VBoxContainer2/MarginContainer/EndInfo" index="2"]
 visible = false
 
+[node name="CheckButton" parent="hud/VBoxContainer2/MarginContainer/EndInfo" index="3"]
+visible = false
+
 [node name="Thought" parent="hud/VBoxContainer2" index="1"]
 self_modulate = Color(0.73, 0.946, 1, 0.815686)
 

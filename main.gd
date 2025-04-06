@@ -80,7 +80,7 @@ func _on_finish():
 	
 	# After it 'settles' - remove all pegs
 	# - but don't count these new ones as released
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(3.0).timeout
 	var finish_area = $"bowl/FinishArea" as Area3D
 	finish_area.monitoring = false
 	get_tree().call_group("question", "handle_disappear")
