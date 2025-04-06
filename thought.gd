@@ -164,7 +164,19 @@ var ThoughtInfos = [
 	ThoughtInfo.new(
 		"I'm afraid there's something fundamentally wrong with me.",
 		"I wear my fear like a scar — proof of nothing but my resiliance."
-	)
+	),
+	ThoughtInfo.new(
+		"I just keep crying. Because I'll never be good enough.",
+		"I can become the authority on my own goodness."
+	),
+	ThoughtInfo.new(
+		"I can’t forgive what they did to me.",
+		"Forgiveness isn’t approval — only release."
+	),
+	ThoughtInfo.new(
+		"My emotions always make things worse.",
+		"Emotions don’t cause harm — but silence and suppression can."
+	),
 ]
 var info: ThoughtInfo
 
@@ -245,3 +257,13 @@ func release():
 	elif  mat is StandardMaterial3D:
 		mat.albedo_color = released_color
 		original_color = released_color
+
+func _on_body_entered(body: Node) -> void:
+	# For now, default everything to glass on glass noise
+	if body is Thought:
+		# TODO for now, only playing on some marble collisons,
+		# to reduce cacophany
+		if randf() < 0.3:
+			$GlassSFX.play()
+	else:
+		$GlassSFX.play()

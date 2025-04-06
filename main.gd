@@ -97,5 +97,9 @@ func _input(event: InputEvent) -> void:
 		if event.keycode == KEY_0:
 			get_tree().call_group("question", "handle_disappear")
 		if event.keycode == KEY_9:
+			for question: Question in get_tree().get_nodes_in_group("question"):
+				if question.get_my_stage() == _current_stage:
+					question.handle_disappear()
+		if event.keycode == KEY_3:
 			SignalBus.question_asked.emit(3)
 	

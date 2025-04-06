@@ -1,11 +1,12 @@
-glass sfx, release sfx, finished sfx, scene change sfx
+character mouths? blinks? other?
 button and menu sfx (?)
-have the realizations appear accross the top - and float away?
+
 
 done:
+	glass sfx, release sfx, finished sfx, scene change sfx
 	hue swap the balls
 	need 'thoughts' screen space dialogue (and people canvas dialogue)
-need some kind of score - maybe a timer that ticks down, and a limit on the number of questions?
+	need some kind of score - maybe a timer that ticks down, and a limit on the number of questions?
 	need brain bg
 	neeed people talking to eachother - lets do 2d for now, ya?
 	need 3 levels, then a win screen - maybe dream layer, childhood layer, subconsious layer?
@@ -13,6 +14,7 @@ need some kind of score - maybe a timer that ticks down, and a limit on the numb
 	Questions can just be normal material - makes z fighting easier
 
 moot:
+	have the realizations appear accross the top - and float away?
 	Then there is some skill in selecting the low cost questions?
 	Don't think I'll have time - but would be cool to add something like 'if you get a ball to this space, all questions are free for 5s' or w/e - heals, delete random blockages, etc
 	wind? 
@@ -22,6 +24,9 @@ Thank you's:
 	beepbox.co
 	mp3cut.net
 	S.O.
+	Rachel McNassor
 	chat-gpt for help with coding
 	xhaya for frenel shader code - https://godotshaders.com/shader/glowing-shield-beam-buble-dark-magic-fresnel/
+	coolors.co
+	textstudio.com
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dts5n1j1ihkxb"]
+[gd_scene load_steps=27 format=3 uid="uid://dts5n1j1ihkxb"]
 
 [ext_resource type="Texture2D" uid="uid://ykmgwul62htf" path="res://pics/thought bubble.png" id="1_2d608"]
 [ext_resource type="Script" uid="uid://b5q3ae0es5ocw" path="res://end_info.gd" id="1_pw7dr"]
@@ -21,6 +21,9 @@
 [ext_resource type="Script" uid="uid://b71yt7dc6hpu0" path="res://release_particles.gd" id="17_5kc73"]
 [ext_resource type="Script" uid="uid://cntnpkl2aqgo5" path="res://cost_particles.gd" id="17_615i1"]
 [ext_resource type="PackedScene" uid="uid://bcuvq7nm4jigx" path="res://release_particle.tscn" id="18_bp16l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bp16l"]
+bg_color = Color(0, 0, 0, 0.945098)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
 
@@ -86,6 +89,7 @@ visible_characters_behavior = 1
 
 [node name="Button" type="Button" parent="VBoxContainer2/MarginContainer/EndInfo"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_bp16l")
 text = "Try Again?"
 
 [node name="Thought" type="TextureRect" parent="VBoxContainer2"]
